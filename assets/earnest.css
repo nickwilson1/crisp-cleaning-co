@@ -9,7 +9,7 @@ h1{font-size:clamp(2rem,6vw,3.1rem)}h2{font-size:1.6rem;margin-top:8px}h3{font-s
 a{color:var(--green)}p{margin:0 0 14px}.muted{color:var(--muted)}
 .wrap{max-width:960px;margin:0 auto;padding:0 16px}
 header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0}
-header.top img{height:44px;width:auto}
+header.top img{height:52px;width:auto;display:block}
 header.top nav a{margin-left:16px;text-decoration:none;font-weight:600;font-size:.95rem}
 section{padding:40px 0;border-top:1px solid var(--mist)}section:first-of-type{border-top:0}
 .cta{display:inline-block;background:var(--green);color:var(--bg);text-decoration:none;font-weight:600;padding:14px 22px;border-radius:12px;margin:6px 8px 6px 0}
