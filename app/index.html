@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Earnest App Demo</title>
+<meta name="description" content="Prototype of the Earnest Cleaning Co client app: your home's little things, your schedule, photos of every finished room.">
+<meta name="theme-color" content="#1F4D43">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="../assets/mark-a-turndown.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/mark-a-turndown.svg">
+<link rel="stylesheet" href="../assets/earnest.css">
+<style>
+body{padding-bottom:84px}
+.demo{background:var(--brass);color:#1C2422;text-align:center;font-size:.8rem;font-weight:600;padding:6px 16px}
+.bar{display:flex;align-items:center;gap:10px;padding:14px 16px}
+.bar img{width:36px;height:36px}.bar b{font-family:Fraunces,Georgia,serif;font-size:1.25rem;color:var(--green)}
+.screen{display:none;padding:0 16px 16px}.screen.on{display:block}
+.card{margin-bottom:14px}
+.big{font-family:Fraunces,Georgia,serif;font-size:1.5rem;color:var(--green);margin:0}
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.ph{aspect-ratio:1;border-radius:10px;background:var(--mist);display:flex;align-items:flex-end;padding:6px;font-size:.72rem;font-weight:600;color:var(--muted)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--mist)}
+.row:last-child{border-bottom:0}.row small{display:block;color:var(--muted);font-size:.85rem}
+.sw{position:relative;width:50px;height:30px;flex:none}.sw input{opacity:0;width:0;height:0}
+.sw span{position:absolute;inset:0;background:var(--mist);border-radius:30px;transition:.2s}
+.sw span:before{content:"";position:absolute;width:24px;height:24px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
+.sw input:checked+span{background:var(--green)}.sw input:checked+span:before{transform:translateX(20px)}
+textarea,input[type=text],select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--mist);border-radius:10px;background:var(--bg);color:var(--ink)}
+label.f{display:block;font-weight:600;margin:12px 0 6px}
+.btn{display:block;width:100%;text-align:center;background:var(--green);color:var(--bg);border:0;border-radius:12px;padding:14px;font:600 1rem Inter,sans-serif;margin-top:12px;cursor:pointer}
+.btn.alt{background:transparent;color:var(--green);border:2px solid var(--green)}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--mist);padding-bottom:env(safe-area-inset-bottom)}
+nav.tabs button{flex:1;background:none;border:0;padding:12px 4px 14px;font:600 .78rem Inter,sans-serif;color:var(--muted);cursor:pointer}
+nav.tabs button.on{color:var(--green)}
+.pill{display:inline-block;background:var(--mist);border-radius:20px;padding:3px 10px;font-size:.8rem;font-weight:600;margin:2px 4px 2px 0}
+.toast{position:fixed;left:16px;right:16px;bottom:96px;background:var(--green);color:var(--bg);padding:12px 16px;border-radius:12px;font-weight:600;display:none}
+</style>
+</head>
+<body>
+<div class="demo">Demo with sample data. Nothing here is a real booking.</div>
+<div class="bar"><img src="../assets/mark-a-turndown.svg" alt=""><b>Earnest</b></div>
+
+<main>
+<div class="screen on" id="s-home">
+  <div class="card">
+    <p class="muted" style="margin:0">Next clean</p>
+    <p class="big">Thursday, 9:00 to 11:30</p>
+    <p style="margin:6px 0 0">Maria and Dee, your usual team.</p>
+    <button class="btn alt" onclick="toast('In the real app this opens two new times to pick from.')">Move this visit</button>
+  </div>
+  <div class="card">
+    <p class="muted" style="margin:0">Last clean, two weeks ago</p>
+    <p style="margin:4px 0 0"><strong>All 9 rooms finished.</strong> Photos sent at 11:24.</p>
+    <div class="photos">
+      <div class="ph">Kitchen</div><div class="ph">Living</div><div class="ph">Primary bed</div>
+      <div class="ph">Primary bath</div><div class="ph">Kids' bath</div><div class="ph">Entry</div>
+    </div>
+    <button class="btn" onclick="toast('Redo requested. Someone texts you within the hour to set a time inside 24 hours.')">Something's not right, redo a room</button>
+    <button class="btn alt" onclick="toast('Tip sent to Maria and Dee, split evenly.')">Tip the team</button>
+  </div>
+</div>
+
+<div class="screen" id="s-mine">
+  <h2>Your home</h2>
+  <p class="muted">Your cleaners see this on every visit.</p>
+  <div class="card" id="finish"></div>
+  <div class="card">
+    <label class="f" for="pets">Pets</label><input type="text" id="pets" value="Biscuit, golden retriever, friendly, stays in the yard">
+    <label class="f" for="allergy">Allergies</label><input type="text" id="allergy" value="Tree nuts in the house">
+    <label class="f" for="dont">Please don't touch</label><textarea id="dont" rows="2">Paperwork on the office desk. The piano.</textarea>
+    <label class="f" for="bdays">Birthdays we can remember</label><input type="text" id="bdays" value="Sam, 14 March. Lily, 2 June.">
+    <label class="f" for="entry">How we get in</label>
+    <select id="entry"><option>Smart lock code, set for the cleaning window</option><option>Earnest lockbox</option><option>Someone is home</option></select>
+    <button class="btn" onclick="save()">Save</button>
+  </div>
+</div>
+
+<div class="screen" id="s-book">
+  <h2>Quote or add a clean</h2>
+  <p class="muted">Send three or four photos and get a firm price inside the hour.</p>
+  <div class="card">
+    <label class="f" for="what">What do you need</label>
+    <select id="what"><option>A deep clean before the holidays</option><option>A move out clean</option><option>An extra regular clean this month</option><option>A gift clean for someone else</option></select>
+    <label class="f" for="when">When</label><input type="text" id="when" placeholder="Any weekday the week of the 16th">
+    <button class="btn alt" onclick="toast('In the real app this opens your camera.')">Add photos</button>
+    <button class="btn" onclick="toast('Sent. A firm price comes back by text inside the hour.')">Get my price</button>
+  </div>
+</div>
+
+<div class="screen" id="s-acct">
+  <h2>Account</h2>
+  <div class="card">
+    <div class="row"><div>Every two weeks, Thursdays<small>3 bed, 2 bath</small></div><b>$175</b></div>
+    <div class="row"><div>Card on file<small>Charged after each clean</small></div><span class="pill">Visa 4242</span></div>
+    <div class="row"><div>Skip a visit<small>Free with 48 hours' notice</small></div><button class="pill" style="border:0;cursor:pointer" onclick="toast('Skipped. Your next clean is in four weeks.')">Skip next</button></div>
+  </div>
+  <div class="card">
+    <h3>Give a clean, get a clean</h3>
+    <p class="muted">When a friend books and finishes their second clean, you both get $25 off.</p>
+    <button class="btn" onclick="toast('Your link is copied.')">Share my link</button>
+  </div>
+</div>
+</main>
+
+<div class="toast" id="toast"></div>
+<nav class="tabs">
+  <button class="on" data-s="s-home">Home</button>
+  <button data-s="s-mine">Your home</button>
+  <button data-s="s-book">Book</button>
+  <button data-s="s-acct">Account</button>
+</nav>
+
+<script>
+const FINISH=[["fold","Hotel fold on towels and toilet paper",true],["beds","Beds made, pillows squared",true],["choc","A chocolate on the bed",false],["shoes","Shoes paired, remotes squared",true],["light","Entry light on if you're home after dark",true],["scent","A light scent",false],["card","A card on your birthday",true]];
+let prefs={};try{prefs=JSON.parse(localStorage.getItem('earnest-prefs')||'{}')}catch(e){}
+const f=document.getElementById('finish');
+f.innerHTML='<h3>The little things</h3>'+FINISH.map(([k,t,d])=>{const on=k in prefs?prefs[k]:d;return `<div class="row"><div>${t}${k==='choc'?'<small>Off while anyone in the house has a nut allergy</small>':''}</div><label class="sw"><input type="checkbox" data-k="${k}" ${on?'checked':''}><span></span></label></div>`}).join('');
+f.addEventListener('change',e=>{const k=e.target.dataset.k;if(!k)return;prefs[k]=e.target.checked;try{localStorage.setItem('earnest-prefs',JSON.stringify(prefs))}catch(_){};toast('Saved. Your team will see this on the next visit.')});
+document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===b.dataset.s));window.scrollTo(0,0)});
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';clearTimeout(t._h);t._h=setTimeout(()=>t.style.display='none',2600)}
+function save(){toast('Saved. Your team will see this on the next visit.')}
+</script>
+</body>
+</html>

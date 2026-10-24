@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Earnest Cleaning Co monogram: an E made of folded towels">
+  <rect x="28" y="22" width="14" height="76" rx="4" fill="#1F4D43"/>
+  <rect x="28" y="22" width="64" height="18" rx="5" fill="#1F4D43"/>
+  <rect x="28" y="51" width="52" height="18" rx="5" fill="#1F4D43"/>
+  <rect x="28" y="80" width="64" height="18" rx="5" fill="#1F4D43"/>
+  <path d="M80 22 L92 22 L92 34 Z M68 51 L80 51 L80 63 Z M80 80 L92 80 L92 92 Z" fill="#C49A4A"/>
+  <path d="M44 31 H86 M44 60 H74 M44 89 H86" stroke="#F7F3EA" stroke-width="1.4" opacity=".45"/>
+</svg>

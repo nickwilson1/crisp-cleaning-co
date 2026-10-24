@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;600&display=swap');
+:root{--green:#1F4D43;--green2:#2B6A5C;--linen:#F7F3EA;--brown:#5B3A29;--brass:#C49A4A;--ink:#1C2422;--mist:#DCE5E0;--muted:#5C6B66;--card:#FFFFFF;--bg:var(--linen)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121816;--ink:#EEF1EF;--muted:#A9B6B1;--card:#1A2220;--mist:#26302D;--green:#7FC0AE;--green2:#9AD3C3}}
+:root[data-theme="dark"]{--bg:#121816;--ink:#EEF1EF;--muted:#A9B6B1;--card:#1A2220;--mist:#26302D;--green:#7FC0AE;--green2:#9AD3C3}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Inter,-apple-system,Segoe UI,Helvetica,Arial,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.15;color:var(--green);margin:0 0 12px}
+h1{font-size:clamp(2rem,6vw,3.1rem)}h2{font-size:1.6rem;margin-top:8px}h3{font-size:1.15rem}
+a{color:var(--green)}p{margin:0 0 14px}.muted{color:var(--muted)}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0}
+header.top img{height:44px;width:auto}
+header.top nav a{margin-left:16px;text-decoration:none;font-weight:600;font-size:.95rem}
+section{padding:40px 0;border-top:1px solid var(--mist)}section:first-of-type{border-top:0}
+.cta{display:inline-block;background:var(--green);color:var(--bg);text-decoration:none;font-weight:600;padding:14px 22px;border-radius:12px;margin:6px 8px 6px 0}
+.cta.alt{background:transparent;color:var(--green);border:2px solid var(--green)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--card);border:1px solid var(--mist);border-radius:14px;padding:18px}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--mist);border-radius:14px;overflow:hidden}
+td,th{padding:12px 14px;text-align:left;border-bottom:1px solid var(--mist)}th{color:var(--muted);font-weight:600;font-size:.9rem}tr:last-child td{border-bottom:0}
+.rule{height:2px;width:56px;background:var(--brass);margin:0 0 16px}
+.note{background:var(--card);border-left:4px solid var(--brass);border-radius:10px;padding:16px 18px}
+ol.finish{padding-left:20px}ol.finish li{margin-bottom:6px}
+footer{padding:32px 0 48px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--mist)}
+@media (max-width:640px){header.top nav{display:none}}

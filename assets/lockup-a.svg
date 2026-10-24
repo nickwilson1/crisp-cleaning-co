@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" role="img" aria-label="Earnest Cleaning Co logo">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@72,600&amp;family=Inter:wght@600&amp;display=swap');</style>
+  <g transform="translate(6 10)">
+    <path d="M18 32 Q60 22 102 32 Q111 60 102 88 Q60 98 18 88 Q9 60 18 32 Z" fill="#1F4D43"/>
+    <path d="M47 60 L38 53 L38 67 Z M73 60 L82 53 L82 67 Z" fill="#5B3A29"/>
+    <rect x="46" y="52" width="28" height="16" rx="2.5" fill="#5B3A29"/>
+    <rect x="57" y="52" width="6" height="16" fill="#C49A4A"/>
+  </g>
+  <text x="138" y="82" font-family="Fraunces, Georgia, serif" font-weight="600" font-size="64" fill="#1F4D43">Earnest</text>
+  <text x="141" y="112" font-family="Inter, Helvetica, Arial, sans-serif" font-weight="600" font-size="16" letter-spacing="6.5" fill="#5B3A29">CLEANING CO</text>
+</svg>
