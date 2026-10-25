@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Earnest App Demo</title>
-<meta name="description" content="Prototype of the Earnest Cleaning Co client app: your home's little things, your schedule, photos of every finished room.">
+<title>Whistle Clean Co App</title>
+<meta name="description" content="Prototype of the Whistle Clean Co client app: your home profile, your schedule, photos of every finished room.">
 <meta name="theme-color" content="#1F4D43">
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="../assets/mark-a-turndown.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../assets/mark-a-turndown.svg">
-<link rel="stylesheet" href="../assets/earnest.css">
+<link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/mark.svg">
+<link rel="stylesheet" href="../assets/site.css">
 <style>
 body{padding-bottom:84px;max-width:480px;margin:0 auto}
 nav.tabs{max-width:480px;margin:0 auto}
@@ -40,7 +40,7 @@ nav.tabs button.on{color:var(--green)}
 </head>
 <body>
 <div class="demo">Demo with sample data. Nothing here is a real booking.</div>
-<div class="bar"><img src="../assets/mark-a-turndown.svg" alt=""><b>Earnest</b></div>
+<div class="bar"><img src="../assets/mark.svg" alt=""><b>Whistle Clean Co</b></div>
 
 <main>
 <div class="screen on" id="s-home">
@@ -72,7 +72,7 @@ nav.tabs button.on{color:var(--green)}
     <label class="f" for="dont">Please don't touch</label><textarea id="dont" rows="2">Paperwork on the office desk. The piano.</textarea>
     <label class="f" for="bdays">Birthdays we can remember</label><input type="text" id="bdays" value="Sam, 14 March. Lily, 2 June.">
     <label class="f" for="entry">How we get in</label>
-    <select id="entry"><option>Smart lock code, set for the cleaning window</option><option>Earnest lockbox</option><option>Someone is home</option></select>
+    <select id="entry"><option>Smart lock code, set for the cleaning window</option><option>Our lockbox</option><option>Someone is home</option></select>
     <button class="btn" onclick="save()">Save</button>
   </div>
 </div>
@@ -113,11 +113,11 @@ nav.tabs button.on{color:var(--green)}
 </nav>
 
 <script>
-const FINISH=[["fold","Hotel fold on towels and toilet paper",true],["beds","Beds made, pillows squared",true],["choc","A chocolate on the bed",false],["shoes","Shoes paired, remotes squared",true],["light","Entry light on if you're home after dark",true],["scent","A light scent",false],["card","A card on your birthday",true]];
-let prefs={};try{prefs=JSON.parse(localStorage.getItem('earnest-prefs')||'{}')}catch(e){}
+const FINISH=[["towels","Towels folded and hung square",true],["beds","Beds made, pillows squared",true],["shoes","Shoes paired, remotes squared",true],["light","Entry light on if you're home after dark",true],["scent","A light scent",false],["card","A card on your birthday",true]];
+let prefs={};try{prefs=JSON.parse(localStorage.getItem('whistle-prefs')||'{}')}catch(e){}
 const f=document.getElementById('finish');
-f.innerHTML='<h3>The little things</h3>'+FINISH.map(([k,t,d])=>{const on=k in prefs?prefs[k]:d;return `<div class="row"><div>${t}${k==='choc'?'<small>Off while anyone in the house has a nut allergy</small>':''}</div><label class="sw"><input type="checkbox" data-k="${k}" ${on?'checked':''}><span></span></label></div>`}).join('');
-f.addEventListener('change',e=>{const k=e.target.dataset.k;if(!k)return;prefs[k]=e.target.checked;try{localStorage.setItem('earnest-prefs',JSON.stringify(prefs))}catch(_){};toast('Saved. Your team will see this on the next visit.')});
+f.innerHTML='<h3>How every clean ends</h3>'+FINISH.map(([k,t,d])=>{const on=k in prefs?prefs[k]:d;return `<div class="row"><div>${t}</div><label class="sw"><input type="checkbox" data-k="${k}" ${on?'checked':''}><span></span></label></div>`}).join('');
+f.addEventListener('change',e=>{const k=e.target.dataset.k;if(!k)return;prefs[k]=e.target.checked;try{localStorage.setItem('whistle-prefs',JSON.stringify(prefs))}catch(_){};toast('Saved. Your team will see this on the next visit.')});
 document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===b.dataset.s));window.scrollTo(0,0)});
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';clearTimeout(t._h);t._h=setTimeout(()=>t.style.display='none',2600)}
 function save(){toast('Saved. Your team will see this on the next visit.')}
