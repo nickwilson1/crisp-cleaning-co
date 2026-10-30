@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Crisp Cleaning Co App</title>
-<meta name="description" content="Prototype of the Crisp Cleaning Co client app: your home profile, your schedule, photos of every finished room.">
-<meta name="theme-color" content="#1F4D43">
+<title>Goldie Cleaning App</title>
+<meta name="description" content="Prototype of the Goldie Cleaning client app: your home profile, your schedule, photos of every finished room.">
+<meta name="theme-color" content="#1B2440">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/mark.svg">
@@ -13,12 +13,12 @@
 <style>
 body{padding-bottom:84px;max-width:480px;margin:0 auto}
 nav.tabs{max-width:480px;margin:0 auto}
-.demo{background:var(--brass);color:#1C2422;text-align:center;font-size:.8rem;font-weight:600;padding:6px 16px}
+.demo{background:var(--gold);color:#1B2440;text-align:center;font-size:.8rem;font-weight:600;padding:6px 16px}
 .bar{display:flex;align-items:center;gap:10px;padding:14px 16px}
-.bar img{width:36px;height:36px}.bar b{font-family:Fraunces,Georgia,serif;font-size:1.25rem;color:var(--green)}
+.bar img{width:36px;height:36px}.bar b{font-weight:700;font-size:1.25rem;color:var(--brand)}
 .screen{display:none;padding:0 16px 16px}.screen.on{display:block}
 .card{margin-bottom:14px}
-.big{font-family:Fraunces,Georgia,serif;font-size:1.5rem;color:var(--green);margin:0}
+.big{font-weight:700;font-size:1.5rem;color:var(--brand);margin:0}
 .photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
 .ph{aspect-ratio:1;border-radius:10px;background:var(--mist);display:flex;align-items:flex-end;padding:6px;font-size:.72rem;font-weight:600;color:var(--muted)}
 .row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--mist)}
@@ -26,21 +26,21 @@ nav.tabs{max-width:480px;margin:0 auto}
 .sw{position:relative;width:50px;height:30px;flex:none}.sw input{opacity:0;width:0;height:0}
 .sw span{position:absolute;inset:0;background:var(--mist);border-radius:30px;transition:.2s}
 .sw span:before{content:"";position:absolute;width:24px;height:24px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
-.sw input:checked+span{background:var(--green)}.sw input:checked+span:before{transform:translateX(20px)}
+.sw input:checked+span{background:var(--brand)}.sw input:checked+span:before{transform:translateX(20px)}
 textarea,input[type=text],select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--mist);border-radius:10px;background:var(--bg);color:var(--ink)}
 label.f{display:block;font-weight:600;margin:12px 0 6px}
-.btn{display:block;width:100%;text-align:center;background:var(--green);color:var(--bg);border:0;border-radius:12px;padding:14px;font:600 1rem Inter,sans-serif;margin-top:12px;cursor:pointer}
-.btn.alt{background:transparent;color:var(--green);border:2px solid var(--green)}
+.btn{display:block;width:100%;text-align:center;background:var(--brand);color:var(--on-brand);border:0;border-radius:12px;padding:14px;font:600 1rem 'DM Sans',sans-serif;margin-top:12px;cursor:pointer}
+.btn.alt{background:transparent;color:var(--brand);border:2px solid var(--brand)}
 nav.tabs{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--mist);padding-bottom:env(safe-area-inset-bottom)}
-nav.tabs button{flex:1;background:none;border:0;padding:12px 4px 14px;font:600 .78rem Inter,sans-serif;color:var(--muted);cursor:pointer}
-nav.tabs button.on{color:var(--green)}
+nav.tabs button{flex:1;background:none;border:0;padding:12px 4px 14px;font:600 .78rem 'DM Sans',sans-serif;color:var(--muted);cursor:pointer}
+nav.tabs button.on{color:var(--brand)}
 .pill{display:inline-block;background:var(--mist);border-radius:20px;padding:3px 10px;font-size:.8rem;font-weight:600;margin:2px 4px 2px 0}
-.toast{position:fixed;left:16px;right:16px;bottom:96px;background:var(--green);color:var(--bg);padding:12px 16px;border-radius:12px;font-weight:600;display:none}
+.toast{position:fixed;left:16px;right:16px;bottom:96px;background:var(--brand);color:var(--on-brand);padding:12px 16px;border-radius:12px;font-weight:600;display:none}
 </style>
 </head>
 <body>
 <div class="demo">Demo with sample data. Nothing here is a real booking.</div>
-<div class="bar"><img src="../assets/mark.svg" alt=""><b>Crisp Cleaning Co</b></div>
+<div class="bar"><img src="../assets/mark.svg" alt=""><b>Goldie Cleaning</b></div>
 
 <main>
 <div class="screen on" id="s-home">
